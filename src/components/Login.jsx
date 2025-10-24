@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../firebase/firebase.init";
 
@@ -17,10 +17,23 @@ const Login = () => {
         console.log(error);
       });
   };
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Sign Out Done");
+        setUser(null);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <h2>PLease login</h2>
       <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+      <button onClick={handleSignOut}>Sign Out</button>
       {user && (
         <div>
           <h3>{user?.displayName}</h3>
