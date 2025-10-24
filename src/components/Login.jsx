@@ -21,10 +21,13 @@ const Login = () => {
     <div>
       <h2>PLease login</h2>
       <button onClick={handleGoogleSignIn}>Sign in with Google</button>
-      <div>
-        <h3>{user?.displayName}</h3>
-        <h5>Email : {user.email} </h5>
-      </div>
+      {user && (
+        <div>
+          <h3>{user?.displayName}</h3>
+          <h5>Email : {user.email} </h5>
+          <img src={user.photoURL} alt="" />
+        </div>
+      )}
     </div>
   );
 };
